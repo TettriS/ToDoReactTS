@@ -16,7 +16,7 @@ function Anchor(props: AncorProps): JSX.Element {
             rel={ props.rel }
             target={ props.target }
         >
-            {props.children}
+            { props.children }
         </a>
     );
 }
