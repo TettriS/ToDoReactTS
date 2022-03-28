@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Anchor from './Components/ancor';
 
 function App() {
   return (
@@ -18,7 +19,17 @@ function App() {
         >
           Learn React
         </a>
+        <Anchor
+            className="App-link"
+            href="https://reactjs.org"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+          Learn React
+        </Anchor>
       </header>
+      <body>
+      </body>
     </div>
   );
 }
