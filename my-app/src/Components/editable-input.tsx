@@ -1,23 +1,28 @@
-import React, {FocusEventHandler} from "react";
+import React, {useState, useEffect} from "react";
 
 interface IInput {
   className?: string;
-  onClickEvent?: React.MouseEventHandler<HTMLInputElement>;
-  onBlurEvent?: React.FocusEventHandler<HTMLInputElement>;
-  title?: string;
+  placeholder?: string;
   isEditable?: boolean;
+  defaultValue?: string;
 }
 
-function Input({className, onClickEvent, onBlurEvent, title, isEditable}: IInput) {
+function EditableInput({className, placeholder, isEditable}: IInput) {
+  const [isActive, setActive] = useState(Boolean(isEditable));
+
+  useEffect(()=>{}, [isActive])
+
   return (
     <input
-      className={['editable-input', className].join(' ')}
-      onClick={onClickEvent}
-      onBlur={onBlurEvent}
-      title={title}
-      disabled={isEditable}
+      className={`editable-input ${className}`}
+      placeholder={placeholder}
+      disabled={!isActive}
+      type='text'
+      onClick={() => setActive(true)}
+      onBlur={() => setActive(false)}
+      defaultValue={'ToDo: Something'}
     />
   );
 }
 
-export default Input;
+export default EditableInput;

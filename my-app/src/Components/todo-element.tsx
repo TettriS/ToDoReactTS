@@ -1,4 +1,5 @@
 import React from "react";
+import EditableInput from './editable-input';
 
 interface IToDoObject {
   value: string;
@@ -19,7 +20,7 @@ function ToDoElement({todo, key}: IToDoElement): JSX.Element {
       className={'todo-element'}
       key={key}
     >
-      {todo.value}
+      <EditableInput  />
     </li>
   );
 }
