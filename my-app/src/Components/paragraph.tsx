@@ -5,7 +5,7 @@ interface ParagraphProps {
 }
 
 function Paragraph(props: ParagraphProps): JSX.Element {
-  return (<p>{ props.children }</p>);
+  return (<p>{props.children}</p>);
 }
 
 export default Paragraph;

@@ -6,8 +6,8 @@ import Body from './Components/body';
 function App() {
   return (
     <div className="App">
-      <Header className="App-header" onlyLogo={'only-logo'} />
-      <Body className="App-body" />
+      <Header className="App-header" onlyLogo={'only-logo'}/>
+      <Body className="App-body"/>
     </div>
   );
 }

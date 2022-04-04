@@ -1,5 +1,6 @@
 :root {
   --main-color: #61DAFB;
+  --icon-size: 25px;
 }
 
 .App {
@@ -14,6 +15,7 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .todo ul li:before,
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
@@ -44,9 +46,33 @@
 .only-logo {
   align-items: start;
 }
+
 .only-logo .App-logo {
   height: 10vmin;
 }
+
 .only-logo > *:not(.App-logo) {
   display: none;
+}
+
+.todo ul {
+  list-style-type: none;
+  color: #fff;
+}
+
+.todo ul li {
+  position: relative;
+  text-align: start;
+  padding-left: var(--icon-size);
+}
+
+.todo ul li:before {
+  background: url("./logo.svg") no-repeat center;
+  content: '';
+  height: var(--icon-size);
+  width: var(--icon-size);
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
