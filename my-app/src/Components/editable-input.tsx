@@ -7,8 +7,8 @@ interface IInput {
   defaultValue?: string;
 }
 
-function EditableInput({className, placeholder, isEditable}: IInput) {
-  const [isActive, setActive] = useState(Boolean(isEditable));
+function EditableInput({className, placeholder, isEditable, defaultValue}: IInput) {
+  const [isActive, setIsActive] = useState(Boolean(isEditable));
 
   useEffect(()=>{}, [isActive])
 
@@ -18,9 +18,9 @@ function EditableInput({className, placeholder, isEditable}: IInput) {
       placeholder={placeholder}
       disabled={!isActive}
       type='text'
-      onClick={() => setActive(true)}
-      onBlur={() => setActive(false)}
-      defaultValue={'ToDo: Something'}
+      onClick={() => setIsActive(true)}
+      onBlur={() => setIsActive(false)}
+      defaultValue={defaultValue}
     />
   );
 }

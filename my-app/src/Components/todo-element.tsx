@@ -20,7 +20,12 @@ function ToDoElement({todo, key}: IToDoElement): JSX.Element {
       className={'todo-element'}
       key={key}
     >
-      <EditableInput  />
+      <EditableInput
+        className={'todo-text'}
+        placeholder={'click here'}
+        isEditable={false}
+        defaultValue={'ToDo: Something'}
+      />
     </li>
   );
 }
