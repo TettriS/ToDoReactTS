@@ -1,16 +1,27 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 
 interface IInput {
   className?: string;
   placeholder?: string;
-  isEditable?: boolean;
+  disabled?: boolean;
   defaultValue?: string;
+
+  onClick?(): void;
+
+  onBlur?(): void;
 }
 
-function EditableInput({className, placeholder, isEditable, defaultValue}: IInput) {
-  const [isActive, setIsActive] = useState(Boolean(isEditable));
-
-  useEffect(()=>{}, [isActive])
+function EditableInput({
+                         className,
+                         placeholder,
+                         disabled = true,
+                         defaultValue,
+                         onClick = () => {
+                         },
+                         onBlur = () => {
+                         }
+                       }: IInput) {
+  const [isActive, setIsActive] = useState(Boolean(disabled));
 
   return (
     <input
@@ -18,8 +29,14 @@ function EditableInput({className, placeholder, isEditable, defaultValue}: IInpu
       placeholder={placeholder}
       disabled={!isActive}
       type='text'
-      onClick={() => setIsActive(true)}
-      onBlur={() => setIsActive(false)}
+      onClick={() => {
+        onClick();
+        setIsActive(true);
+      }}
+      onBlur={() => {
+        onBlur();
+        setIsActive(false);
+      }}
       defaultValue={defaultValue}
     />
   );
