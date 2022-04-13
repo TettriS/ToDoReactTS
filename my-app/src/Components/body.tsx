@@ -8,11 +8,11 @@ interface BodyProps {
 
 function Body(props: BodyProps): JSX.Element {
   return (
-    <body
+    <div
       className={ props.className }
     >
       <ToDo className='todo'></ToDo>
-    </body>
+    </div>
   );
 }
 

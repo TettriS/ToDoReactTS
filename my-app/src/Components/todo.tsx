@@ -7,20 +7,33 @@ interface IToDo {
 }
 
 function ToDo({className, name}: IToDo): JSX.Element {
-  const [user, setUser] = React.useState([
-    {value: 'text'},
-    {value: 'text2'}
+  const [todos, setTodos] = React.useState([
+    {
+      value: 'text',
+      id: 'first',
+    },
+    {
+      value: 'text2',
+      id: 'second',
+    }
   ]);
+  const updateTodos = (key:string, value:string):void => {
+    setTodos(todos.map((todo) => {
+      if (todo.id === key)  todo.value = value;
+      return todo;
+    }));
+  }
 
   return (
     <div className={className}>
       {name ? <h2 className='todo-title'>{name}</h2> : null}
       <ul>{
-        user.map(
-          (todo, index) => (
+        todos.map(
+          (todo) => (
             <ToDoElement
-              key={index.toString()}
+              key={todo.id}
               todo={todo}
+              callback={updateTodos}
             />
           )
         )

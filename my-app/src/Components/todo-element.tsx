@@ -1,30 +1,42 @@
 import React from "react";
-import EditableInput from './editable-input';
 
 interface IToDoObject {
   value: string;
-  closable?: boolean;
+  id: string;
   time?: object;
-
 }
 
 interface IToDoElement {
-  children?: string | JSX.Element | JSX.Element[];
-  key: string;
   todo: IToDoObject;
+  callback?: (key:string, value:string) => void;
 }
 
-function ToDoElement({todo, key}: IToDoElement): JSX.Element {
+function ToDoElement({todo, callback}: IToDoElement): JSX.Element {
+  const [isDisabled, setIsDisabled] = React.useState(true);
+  const inputContainer = React.useRef<HTMLInputElement>(null);
+  const toggleDisabled = ():void => setIsDisabled(!isDisabled);
+  const onBlur = () => {
+    toggleDisabled();
+    if (callback instanceof Function && inputContainer && inputContainer.current) callback(todo.id, inputContainer.current.value);
+  }
+  const onClick = () => {
+    toggleDisabled();
+    if (inputContainer && inputContainer.current) inputContainer.current.focus();
+    console.dir(inputContainer)
+  }
+
   return (
     <li
-      className={'todo-element'}
-      key={key}
+      className='todo-element'
+      onClick={onClick}
     >
-      <EditableInput
-        className={'todo-text'}
-        placeholder={'click here'}
-        isEditable={false}
-        defaultValue={'ToDo: Something'}
+      <input
+        title={'click here'}
+        className='todo-input'
+        disabled={isDisabled}
+        defaultValue={todo.value || 'ToDo: Something'}
+        ref={inputContainer}
+        onBlur={onBlur}
       />
     </li>
   );
